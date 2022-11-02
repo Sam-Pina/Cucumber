@@ -1,25 +1,14 @@
-
 @tag
-Feature: Title of your feature
-  I want to use this template for my feature file
+Feature: Cliente faz saque de dinheiro como um cliente, eu gostaria de sacar dinheiroem caixa eletronico, para que eu nao trnha que esperar numa fila de banco.
 
   @tag1
-  Scenario: Title of your scenario
-    Given I want to write a step with precondition
-    And some other precondition
-    When I complete action
-    And some other action
-    And yet another action
-    Then I validate the outcomes
-    And check more outcomes
+  Scenario: Cliente especial com saldo negativo
+    Given Um cliente especial com saldo atual de -200 reais
+    When For solicitado um saque no valor de 100 reais
+    Then Deve efetuar o saque e atualizar o saldo da conta para -300 reais.
 
   @tag2
-  Scenario Outline: Title of your scenario outline
-    Given I want to write a step with <name>
-    When I check for the <value> in step
-    Then I verify the <status> in step
-
-    Examples: 
-      | name  | value | status  |
-      | name1 |     5 | success |
-      | name2 |     7 | Fail    |
+  Scenario Outline: Cliente comum com saldo negativo
+    Given Um cliente comum com saldo atual de -300 reais
+    When solicitar um saque de 200 reais
+    Then Nao deve efetuar o saque e deve retornar a mensagem saldo insuficiente

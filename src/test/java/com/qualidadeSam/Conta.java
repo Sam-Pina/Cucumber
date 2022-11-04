@@ -19,9 +19,11 @@ public class Conta {
 	 */
 	@Given("Um cliente especial com saldo atual de {int} reais")
 	public void um_cliente_especial_com_saldo_atual_de_reais(Integer reais) {
-		clienteEspecialSaldo = 200;
+		this.clienteEspecialSaldo = reais;
 		
-		throw new io.cucumber.java.PendingException();
+		if(this.clienteEspecial != reais){
+			throw new io.cucumber.java.PendingException();
+		}
 	}
 
 	/**
@@ -36,9 +38,11 @@ public class Conta {
 	 */
 	@When("For solicitado um saque no valor de {int} reais")
 	public boolean for_solicitado_um_saque_no_valor_de_reais(Integer reais) {
-		saqueClienteEspecial = 100;
+		this.saqueClienteEspecial = reais;
 		
-		throw new io.cucumber.java.PendingException();
+		if(this.saqueClienteEspecial != reais){
+			throw new io.cucumber.java.PendingException();
+		}
 	}
 
 	/**
@@ -53,9 +57,12 @@ public class Conta {
 	 */
 	@Then("Deve efetuar o saque e atualizar o saldo da conta para {int} reais.")
 	public void deve_efetuar_o_saque_e_atualizar_o_saldo_da_conta_para_reais(Integer reais) {
-		clienteEspecialSaldoAtt = clienteEspecialSaldo - (saqueClienteEspecial);
+		String cliente = "";
+		this.cliente = "especial";
 		
-		throw new io.cucumber.java.PendingException();
+		if (this.cliente != "especial") {
+			throw new io.cucumber.java.PendingException();
+		}
 	}
 
 	/**
@@ -69,9 +76,13 @@ public class Conta {
 	 */
 	@Given("Um cliente comum com saldo atual de {int} reais")
 	public void um_cliente_comum_com_saldo_atual_de_reais(Integer reais) {
-		int clienteComumSaldo = -300;
+		int clienteComumSaldo;
 		
-		throw new io.cucumber.java.PendingException();
+		this.clienteComumSaldo = reais;
+
+		if (this.clienteComumSaldo != reais) {
+			throw new io.cucumber.java.PendingException();
+		}
 	}
 
 	/**
@@ -86,9 +97,13 @@ public class Conta {
 	 */
 	@When("solicitar um saque de {int} reais")
 	public void solicitar_um_saque_de_reais(Integer reais) {
-		int saqueClienteComum = 200;
+		int saqueClienteComum;
 		
-		throw new io.cucumber.java.PendingException();
+		this.saqueClienteComum = reais;
+		
+		if (this.saqueClienteComum != reais) {
+			throw new io.cucumber.java.PendingException();
+		}
 	}
 
 	/**
@@ -103,8 +118,11 @@ public class Conta {
 	 */
 	@Then("Nao deve efetuar o saque e deve retornar a mensagem saldo insuficiente")
 	public void nao_deve_efetuar_o_saque_e_deve_retornar_a_mensagem_saldo_insuficiente() {
-		System.out.println("Saldo insuficiente");
-		throw new io.cucumber.java.PendingException();
-	}
+		this.cliente = "comum";
 
+		if (this.cliente == "comum") {
+			System.out.println("Saldo Insuficiente");
+		} else {
+			throw new io.cucumber.java.PendingException();
+	}
 }

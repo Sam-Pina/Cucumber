@@ -1,7 +1,6 @@
 public class Cliente {
 
-	// Criação dos atributos que serão utilizados.
-
+	// atributos
 	private int saldoEspecial;
 	private int saqueEspecial;
 	private int contaEspecial;
@@ -10,19 +9,12 @@ public class Cliente {
 	private int saqueComum;
 	private int contaComum;
 
-	/**
-	 * 
-	 * - Criação do construtor vazio da classe.
-	 * 
-	 */
-
+	// Contrutor
 	public Cliente() {
 		super();
 	}
 	
-	// - Criação dos getters e setters dos atributos criados.
-	// - Os metodos vão ser utilizados na classe "Conta" quando instanciados e chamados.
-
+	// getters e setters
 	public int getSaldoEspecial() {
 		return saldoEspecial;
 	}

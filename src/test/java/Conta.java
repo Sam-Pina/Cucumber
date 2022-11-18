@@ -1,59 +1,24 @@
-	/**
-	 * 
-	 * - Importando bibliotecas necess·rias para testes nos metodos given, then e when".
-	 * 
-	 */
-
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 public class Conta {
 	
-	/**
-	 * 
-	 * - Criando um atributo boolean "clienteEspecial".<br>
-	 * - Se o atributo "clienteEspecial" for true, o ultimo metodo n„o executa, conforme os cenarios, o cliente È especial.<br>
-	 * - Se o atributo "clienteEspecial" for false, todos os metodos executam conforme os cenarios, o cliente È comum.
-	 * 
-	 */
-	
 	boolean clienteEspecial = false;
 	
-	// - Criando variaveis
-	
-	int solicitasaqueEspecial;
-	int solicitasaqueComum;
-	
-	int saldoEspecialAtual;
-	int saldoEspecial;
-	
-	int saldoComumAtual;
-	int saldoComum;
-	
-	int num;
+	int solicitasaqueEspecial, solicitasaqueComum, saldoEspecialAtual, saldoEspecial, saldoComumAtual, saldoComum, num;
 	
 	String erro = "Falha no processo";
 	String erro2 = "saldo insuficiente";
-	
-	/**
-	 * 
-	 * - Instanciando a classe "Cliente";<br>
-	 * - Criando um objeto da classe "Cliente" com o nome de "cliente";<br>
-	 * - Necessa·rio para poder utilizar os metodos, atributos e construtores da classe "Cliente".
-	 * 
-	 */
 
 	Cliente cliente = new Cliente();
 	
 	/**
+	 * Cenario 1 - Cliente Especial - Saldo atual
 	 * 
-	 * * ETAPA 1 * <br>
-	 * Linha 59 e 60 - Neste metodo o cliente especial tem um saldo de -200 reais (valor definido na variavel "{int} e int1"), 'GIVEN - @tag1' na classe "conta_bdd.feature".<br>
-	 * Linha 62 - passando o valor de "int1" na variavel "num".<br>
-	 * Linha 64 e 65 - Chamando o objeto "cliente" e definindo o metodo "setSaldoEspecial()" criado na classe "Cliente", passando como parametro o valor de "int1", colocando o valor setado dentro da variavel "saldoEspecial".<br>
-	 * Linha 67 e 69 - Se a variavel "saldoEspecial" for diferente de "num" (-200 reais), retornar "throw new io.cucumber.java.PendingException(erro)" (metodo pendente), sen„o, metodo passou com sucesso.
-	 * 
+	 * Nessa etapa do codigo o cliente especial possui um saldo negativo de 200 reais, setados na variavel clienteEspecialSaldo, onde o valor dessa variavel ser√° Inteiro.
+	 * Como base desse cenario utilizamos o Given (dado que), e apartir dele come√ßamos desenvolver.
+	 * @param saldo atual cliente especial
 	 */
 	
 	@Given("Um cliente especial com saldo atual de {int} reais")
@@ -72,13 +37,11 @@ public class Conta {
 	}
 	
 	/**
+	 * Cenario 1 - Cliente Especial - Efetuar saque e atualizar o saldo da conta
 	 * 
-	 * * ETAPA 2 * <br>
-	 * Linha 84 e 85 - Neste metodo o cliente especial solicita um saque de 100 reais (valor definido na variavel "{int} e int1"), 'WHEN - @tag1' na classe "conta_bdd.feature";<br>
-	 * Linha 87 - passando o valor de "int1" na variavel "num".<br>
-	 * Linha 89 e 90 - Chamando o objeto "cliente" e definindo o metodo "setSaqueEspecial()" criado na classe "Cliente", passando como parametro o valor de "int1", colocando o valor setado dentro da variavel "solicitasaqueEspecial".<br>
-	 * Linha 92 e 94 - Se a variavel "solicitasaqueEspecial" for diferente de "num" (100 reais), retornar "throw new io.cucumber.java.PendingException(erro)" (metodo pendente), sen„o, metodo passou com sucesso.
-	 * 
+	 * Nessa etapa do codigo o cliente especial j√° realizou seu saque e o sistema dever√° atualizar sua nova divida, de acordo com valor sacado
+	 * Como base desse cenario utilizamos o Then (entao), e apartir dele come√ßamos desenvolver.
+	 * @param novo saldo cliente especial
 	 */
 
 	@When("For solicitado um saque no valor de {int} reais")
@@ -97,14 +60,11 @@ public class Conta {
 	}
 	
 	/**
+	 * Cenario 1 - Cliente Especial - Efetuar saque e atualizar o saldo da conta
 	 * 
-	 * * ETAPA 3 * <br>
-	 * Linha 110 e 111 - Neste metodo o cliente especial deve efetuar o saque de 100 reais e atualizar o saldo da conta para -300 reais (valor definido na variavel "{int} e int1"), 'THEN - @tag1' na classe "conta_bdd.feature"; <br>
-	 * Linha 113 - Se "clienteEspecial" for true (cliente È especial).<br>
-	 * Linha 115 - Se o saldo for > 0 (positivo) ou menor que 0 (negativo), pode efetuar o saque das duas maneiras.<br>
-	 * Linha 117 e 118 - Chamando o objeto "cliente" e definindo o metodo "setSaldoEspecial()" criado na classe "Cliente", passando como parametro o valor de "int1", colocando o valor setado dentro da variavel "saldoEspecialAtual".<br>
-	 * Linha 122 e 124 - sen„o, retornar "throw new io.cucumber.java.PendingException(erro)" (metodo pendente).
-	 * 
+	 * Nessa etapa do codigo o cliente especial j√° realizou seu saque e o sistema dever√° atualizar sua nova divida, de acordo com valor sacado
+	 * Como base desse cenario utilizamos o Then (entao), e apartir dele come√ßamos desenvolver.
+	 * @param novo saldo cliente especial
 	 */
 
 	@Then("deve efetuar o saque e atualizar o saldo da conta para {int} reais")
@@ -125,15 +85,13 @@ public class Conta {
 			
 		}
 	}
-	
 	/**
+	 * Cenario 2 - Cliente Comum - Saldo atual
 	 * 
-	 * * ETAPA 4 * <br>
-	 * Linha 139 e 140 - Neste metodo o cliente comum tem um saldo de -300 reais (valor definido na variavel "{int} e int1"), 'GIVEN - @tag2' na classe "conta_bdd.feature";<br>
-	 * Linha 142 - passando o valor de "int1" na variavel "num".<br>
-	 * Linha 144 e 145 - Chamando o objeto "cliente" e definindo o metodo "setSaldoComum()" criado na classe "Cliente", passando como parametro o valor de "int1", colocando o valor setado dentro da variavel "saldoComum".<br>
-	 * Linha 147 e 149 - Se a variavel "saldoComum" for diferente de "num" (-300 reais), retornar "throw new io.cucumber.java.PendingException(erro)" (metodo pendente), sen„o, metodo passou com sucesso.
+	 * Nessa etapa do codigo o cliente comum possui um saldo negativo de 300 reais, onde o valor da variavel ser√° Inteiro. N√£o permitindo o mesmo de realizar um saque
+	 * Como base desse cenario utilizamos o Given (dado que), e apartir dele come√ßaamos desenvolver.
 	 * 
+	 * @param saldo atual cliente comum
 	 */
 	
 	@Given("Um cliente comum com saldo atual de {int} reais")
@@ -150,15 +108,14 @@ public class Conta {
 			
 		}
 	}
-	
+
 	/**
+	 * Cenario 2 - Cliente Comum - Solicita√ß√£o de saque
 	 * 
-	 * * ETAPA 5 * <br>
-	 * Linha 164 e 165 - Neste metodo o cliente comum solicita um saque de 200 reais (valor definido na variavel "{int} e int1"), 'WHEN - @tag2' na classe "conta_bdd.feature";<br>
-	 * Linha 167 - passando o valor de "int1" na variavel "num".<br>
-	 * Linha 169 e 170 - Chamando o objeto "cliente" e definindo o metodo "setSaqueComum()" criado na classe "Cliente", passando como parametro o valor de "int1", colocando o valor setado dentro da variavel "solicitasaqueComum".<br>
-	 * Linha 172 e 174 - Se a variavel "solicitasaqueComum" for diferente de "num" (200 reais), retornar "throw new io.cucumber.java.PendingException(erro)" (metodo pendente), sen„o, metodo passou com sucesso.
-	 * 
+	 * Nessa etapa do codigo o cliente comum deseja realizar um saque, porem ele esta com saldo negativo, entao nao conseguira realizar esse saque, ele so conseguiria 
+	 * se fosse um cliente especial.
+	 * Como base desse cenario utilizamos o When (quando), e apartir dele come√ßamos desenvolver.
+	 * @param cliente comum solicita saque
 	 */
 
 	@When("Solicitar um saque de {int} reais")
@@ -175,17 +132,14 @@ public class Conta {
 		
 		}
 	}
-	
-	/**
-	 * 
-	 * * ETAPA 6 * <br>
-	 * Linha 189 e 190 - Neste metodo o cliente comum n„o deve efetuar o saque de 200 reais e deve retornar a mensagem "Saldo Insuficiente", 'THEN - @tag2' na classe "conta_bdd.feature"; <br>
-	 * Linha 192 - Se "clienteEspecial" for false (cliente È comum).<br>
-	 * Linha 194 e 195 - Se o "saldoComum" for > 0 (positivo), chamar o metodo "setSaqueComum" passando como parametro a variavel "solicitasaqueComum" (saque do clliente efetuado com sucesso).<br>
-	 * Linha 199 - sen„o, retornar "throw new io.cucumber.java.PendingException(erro2)" (metodo pendente e saldo insuficiente).
-	 * 
-	 */
 
+	/**
+	 * Cenario 2 - Cliente Comum - Efetuar saque e atualizar o saldo da conta
+	 * 
+	 * Nessa etapa do codigo o cliente comum apos ter seu saque negado, o sistema dever√° informar uma mensagem de "saldo insuficiente", bloqueando a retirada do dinheiro.
+	 * Como base desse cenario utilizamos o Then (entao), e apartir dele come√ßaamos desenvolver.
+	 * @param cliente comum teve seu saque recusado
+	 */
 	@Then("Nao deve efetuar o saque e deve retornar a mensagem saldo insuficiente")
 	public void nao_deve_efetuar_o_saque_e_deve_retornar_a_mensagem_saldo_insuficiente() {
 		
